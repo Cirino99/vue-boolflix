@@ -1,12 +1,23 @@
 <template>
     <header>
-
+        <input type="text" v-model="userSearch" @keyup.enter="sendInputUser">
+        <button>Search</button>
     </header>
 </template>
 
 <script>
 export default {
-    name: 'HeaderVue'
+    name: 'HeaderVue',
+    data() {
+        return {
+            userSearch: ''
+        }
+    },
+    methods: {
+        sendInputUser() {
+            this.$emit('myInput', this.userSearch);
+        }
+    }
 }
 </script>
 
