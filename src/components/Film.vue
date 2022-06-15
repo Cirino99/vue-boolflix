@@ -1,16 +1,25 @@
 <template>
-    <div class="d-flex flex-column align-items-center col-2 text-center">
-        <img v-if="film.poster_path !== null" :src="'https://image.tmdb.org/t/p/w92' + film.poster_path" alt="">
-        <h3>Titolo: {{ film.title }}</h3>
-        <h4>Titolo originale: {{ film.original_title }}</h4>
-        <span>Lingua originale: {{ film.original_language }}
-            <lang-flag :iso="film.original_language" />
-        </span>
-        <span>
-            <font-awesome-icon icon="fa-solid fa-star" v-for="(star, index) in ratingStar" :key="index" />
-            <font-awesome-icon icon="fa-regular fa-star" v-for="(star, index) in (5 - ratingStar)" :key="index" />
-        </span>
-        <span>film</span>
+    <div @mouseover="cardHover = true" @mouseleave="cardHover = false">
+        <img v-if="film.poster_path !== null" :src="'https://image.tmdb.org/t/p/w342' + film.poster_path" alt="">
+        <div v-else class="copertina d-flex justify-content-center align-items-center">
+            <h2>{{ film.name }}</h2>
+        </div>
+        <div class="description d-flex flex-column" :class="!cardHover ? 'd-none' : ''">
+            <span> <strong>Titolo: </strong>{{ film.title }}</span>
+            <span> <strong>Titolo originale:</strong> {{ film.original_title }}</span>
+
+            <span>
+                <strong>Voto: </strong>
+                <font-awesome-icon icon="fa-solid fa-star" v-for="(star, index) in ratingStar" :key="index" />
+                <font-awesome-icon icon="fa-regular fa-star" v-for="(star, index) in (5 - ratingStar)"
+                    :key="index + ratingStar" />
+            </span>
+            <span><strong>Lingua originale:</strong>
+                <lang-flag :iso="film.original_language" />
+            </span>
+            <span><strong>Trama:</strong> {{ overviewFilm }}</span>
+            <span>film</span>
+        </div>
     </div>
 </template>
 
@@ -24,9 +33,17 @@ export default {
     props: {
         film: Object
     },
+    data() {
+        return {
+            cardHover: false
+        }
+    },
     computed: {
         ratingStar() {
             return Math.ceil(this.film.vote_average / 2);
+        },
+        overviewFilm() {
+            return this.film.overview.substr(0, 350) + '...';
         }
     }
 }
@@ -34,7 +51,24 @@ export default {
 
 <style scoped lang="scss">
 div {
-    background-color: aqua;
-    border-radius: 20px;
+    background-color: #000000;
+    position: relative;
+    padding: 10px;
+
+    .description {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: white;
+        padding-top: 60px;
+    }
+
+    .copertina {
+        width: 342px;
+        height: 513px;
+        color: white;
+    }
 }
 </style>

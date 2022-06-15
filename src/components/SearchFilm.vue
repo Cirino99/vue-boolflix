@@ -19,4 +19,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+section {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
 </style>
