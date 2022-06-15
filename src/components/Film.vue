@@ -8,6 +8,7 @@
         </span>
         <span>
             <font-awesome-icon icon="fa-solid fa-star" v-for="(star, index) in ratingStar" :key="index" />
+            <font-awesome-icon icon="fa-regular fa-star" v-for="(star, index) in (5 - ratingStar)" :key="index" />
         </span>
         <span>film</span>
     </div>
