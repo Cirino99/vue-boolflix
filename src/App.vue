@@ -2,7 +2,7 @@
     <div id="app">
         <HeaderVue @myInput="searchData" />
         <main>
-            <SearchFilmVue v-if="listFilms !== ''" :listFilms="listFilms" />
+            <SearchFilmVue v-if="listMovies !== '' || listSeries !== ''" :films="listMovies" :series="listSeries" />
         </main>
     </div>
 </template>
@@ -26,14 +26,24 @@ export default {
                 key: '049b0824b24d9a73de8047a8a18e7c77',
                 language: 'it-IT',
             },
-            listFilms: ''
+            listMovies: [],
+            listSeries: []
         }
     },
     methods: {
-        searchData(e) {
-            console.log(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + e);
-            axios.get(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + e).then((result) => {
-                this.listFilms = result.data.results;
+        searchData(userData) {
+            this.axiosFunction(this.urlApi.urlMovie, userData, 'movie');
+            this.axiosFunction(this.urlApi.urlSeries, userData, 'serie');
+        },
+        axiosFunction(url, query, type) {
+            console.log(url + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + query);
+            axios.get(url + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + query).then((result) => {
+                if (type === 'movie') {
+                    this.listMovies = result.data.results;
+                } else {
+                    this.listSeries = result.data.results;
+                }
+
             }).catch((error) => {
                 console.log('Errore', error);
             });
