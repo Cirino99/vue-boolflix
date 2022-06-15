@@ -10,15 +10,16 @@
 
             <span>
                 <strong>Voto: </strong>
-                <font-awesome-icon icon="fa-solid fa-star" v-for="(star, index) in ratingStar" :key="index" />
-                <font-awesome-icon icon="fa-regular fa-star" v-for="(star, index) in (5 - ratingStar)"
+                <font-awesome-icon class="star-icon" icon="fa-solid fa-star" v-for="(star, index) in ratingStar"
+                    :key="index" />
+                <font-awesome-icon class="star-icon" icon="fa-regular fa-star" v-for="(star, index) in (5 - ratingStar)"
                     :key="index + ratingStar" />
             </span>
             <span><strong>Lingua originale:</strong>
                 <lang-flag :iso="serie.original_language" />
             </span>
+            <span><strong>Categoria: </strong>serie</span>
             <span><strong>Trama:</strong> {{ overviewSerie }}</span>
-            <span>serie</span>
         </div>
     </div>
 </template>
@@ -63,6 +64,10 @@ div {
         height: 100%;
         color: white;
         padding-top: 60px;
+
+        .star-icon {
+            color: gold;
+        }
     }
 
     .copertina {

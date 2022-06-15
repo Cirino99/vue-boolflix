@@ -2,7 +2,7 @@
     <div @mouseover="cardHover = true" @mouseleave="cardHover = false">
         <img v-if="film.poster_path !== null" :src="'https://image.tmdb.org/t/p/w342' + film.poster_path" alt="">
         <div v-else class="copertina d-flex justify-content-center align-items-center">
-            <h2>{{ film.name }}</h2>
+            <h2>{{ film.title }}</h2>
         </div>
         <div class="description d-flex flex-column" :class="!cardHover ? 'd-none' : ''">
             <span> <strong>Titolo: </strong>{{ film.title }}</span>
@@ -10,15 +10,16 @@
 
             <span>
                 <strong>Voto: </strong>
-                <font-awesome-icon icon="fa-solid fa-star" v-for="(star, index) in ratingStar" :key="index" />
-                <font-awesome-icon icon="fa-regular fa-star" v-for="(star, index) in (5 - ratingStar)"
+                <font-awesome-icon class="star-icon" icon="fa-solid fa-star" v-for="(star, index) in ratingStar"
+                    :key="index" />
+                <font-awesome-icon class="star-icon" icon="fa-regular fa-star" v-for="(star, index) in (5 - ratingStar)"
                     :key="index + ratingStar" />
             </span>
             <span><strong>Lingua originale:</strong>
                 <lang-flag :iso="film.original_language" />
             </span>
+            <span><strong>Categoria: </strong>film</span>
             <span><strong>Trama:</strong> {{ overviewFilm }}</span>
-            <span>film</span>
         </div>
     </div>
 </template>
@@ -63,6 +64,10 @@ div {
         height: 100%;
         color: white;
         padding-top: 60px;
+
+        .star-icon {
+            color: gold;
+        }
     }
 
     .copertina {
