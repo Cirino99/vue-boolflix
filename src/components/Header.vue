@@ -1,7 +1,7 @@
 <template>
     <header>
         <input type="text" v-model="userSearch" @keyup.enter="sendInputUser">
-        <button>Search</button>
+        <button @click.prevent="sendInputUser">Search</button>
     </header>
 </template>
 

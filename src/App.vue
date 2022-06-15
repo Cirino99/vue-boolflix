@@ -1,32 +1,38 @@
 <template>
     <div id="app">
         <HeaderVue @myInput="searchData" />
-        <MainVue v-if="listFilms !== ''" :listFilms="listFilms" />
+        <main>
+            <SearchFilmVue v-if="listFilms !== ''" :listFilms="listFilms" />
+        </main>
     </div>
 </template>
 
 <script>
 import HeaderVue from './components/Header.vue';
-import MainVue from './components/Main.vue';
+import SearchFilmVue from './components/SearchFilm.vue';
 import axios from 'axios';
 
 export default {
     name: 'App',
     components: {
         HeaderVue,
-        MainVue
+        SearchFilmVue
     },
     data() {
         return {
-            urlApi: 'https://api.themoviedb.org/3/search/movie?api_key=049b0824b24d9a73de8047a8a18e7c77&language=it-IT&query=',
+            urlApi: {
+                urlMovie: 'https://api.themoviedb.org/3/search/movie?',
+                urlSeries: 'https://api.themoviedb.org/3/search/tv?',
+                key: '049b0824b24d9a73de8047a8a18e7c77',
+                language: 'it-IT',
+            },
             listFilms: ''
         }
     },
     methods: {
         searchData(e) {
-            console.log(this.urlApi + e);
-            axios.get(this.urlApi + e).then((result) => {
-                console.log(result.data.results);
+            console.log(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + e);
+            axios.get(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + e).then((result) => {
                 this.listFilms = result.data.results;
             }).catch((error) => {
                 console.log('Errore', error);

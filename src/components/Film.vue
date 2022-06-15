@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <span>{{ film.title }}</span>
-        <span>{{ film.original_title }}</span>
-        <span>{{ film.original_language }}</span>
-        <span>{{ film.vote_average }}</span>
+    <div class="d-flex flex-column align-items-center col-2 text-center">
+        <h3>Titolo: {{ film.title }}</h3>
+        <h4>Titolo originale: {{ film.original_title }}</h4>
+        <span>Lingua originale: {{ film.original_language }}</span>
+        <span>Voto: {{ film.vote_average }}</span>
     </div>
 </template>
 
@@ -17,4 +17,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+div {
+    background-color: aqua;
+    border-radius: 20px;
+}
 </style>
