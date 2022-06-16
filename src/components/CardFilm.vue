@@ -1,12 +1,12 @@
 <template>
     <div class="card" @mouseover="cardHover = true" @mouseleave="cardHover = false">
-        <img v-if="serie.poster_path !== null" :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
+        <img v-if="item.poster !== null" :src="'https://image.tmdb.org/t/p/w342' + item.poster" alt="">
         <div v-else class="copertina d-flex justify-content-center align-items-center">
-            <h2>{{ serie.name }}</h2>
+            <h2>{{ item.nome }}</h2>
         </div>
         <div class="description d-flex flex-column" :class="!cardHover ? 'd-none' : ''">
-            <span> <strong>Titolo: </strong>{{ serie.name }}</span>
-            <span> <strong>Titolo originale:</strong> {{ serie.original_name }}</span>
+            <span> <strong>Titolo: </strong>{{ item.nome }}</span>
+            <span> <strong>Titolo originale:</strong> {{ item.nomeOriginale }}</span>
 
             <span>
                 <strong>Voto: </strong>
@@ -16,10 +16,10 @@
                     :key="index + ratingStar" />
             </span>
             <span><strong>Lingua originale:</strong>
-                <lang-flag :iso="serie.original_language" />
+                <lang-flag :iso="item.lingua" />
             </span>
-            <span><strong>Categoria: </strong>serie</span>
-            <span><strong>Trama:</strong> {{ overviewSerie }}</span>
+            <span><strong>Categoria: </strong>{{ item.categoria }}</span>
+            <span><strong>Trama:</strong> {{ overviewItem }}</span>
         </div>
     </div>
 </template>
@@ -27,12 +27,12 @@
 <script>
 import LangFlag from 'vue-lang-code-flags';
 export default {
-    name: 'SerieVue',
+    name: 'CardVue',
     components: {
         LangFlag
     },
     props: {
-        serie: Object
+        item: Object
     },
     data() {
         return {
@@ -41,10 +41,10 @@ export default {
     },
     computed: {
         ratingStar() {
-            return Math.ceil(this.serie.vote_average / 2);
+            return Math.ceil(this.item.voto / 2);
         },
-        overviewSerie() {
-            return this.serie.overview.substr(0, 350) + '...';
+        overviewItem() {
+            return this.item.trama.substr(0, 350) + '...';
         }
     }
 }

@@ -2,21 +2,50 @@
     <section>
         <h2>Risultati della ricerca:</h2>
         <div class="d-flex flex-wrap">
-            <FilmVue v-for="(film) in films" :key="film.id" :film="film" />
-            <SerieVue v-for="(serie) in series" :key="serie.id" :serie="serie" />
+            <CardFilmVue v-for="(card) in generalList" :key="card.id" :item="card" />
         </div>
     </section>
 </template>
 
 <script>
-import FilmVue from './Film.vue';
-import SerieVue from './Serie.vue';
+import CardFilmVue from './CardFilm.vue';
 export default {
     name: "SearchFilmVue",
-    components: { FilmVue, SerieVue },
+    components: { CardFilmVue },
     props: {
         films: Array,
         series: Array
+    },
+    computed: {
+        generalList() {
+            let arr = [];
+            this.films.forEach(element => {
+                arr.push({
+                    nome: element.title,
+                    nomeOriginale: element.original_title,
+                    poster: element.poster_path,
+                    voto: element.vote_average,
+                    lingua: element.original_language,
+                    trama: element.overview,
+                    id: element.id,
+                    categoria: 'film'
+                });
+            });
+            this.series.forEach(element => {
+                arr.push({
+                    nome: element.name,
+                    nomeOriginale: element.original_name,
+                    poster: element.poster_path,
+                    voto: element.vote_average,
+                    lingua: element.original_language,
+                    trama: element.overview,
+                    id: element.id,
+                    categoria: 'serie'
+                });
+            });
+            console.log(arr);
+            return arr
+        }
     }
 }
 </script>
