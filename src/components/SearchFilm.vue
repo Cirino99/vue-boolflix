@@ -1,7 +1,7 @@
 <template>
     <section>
         <h2>Risultati della ricerca:</h2>
-        <div class="d-flex flex-wrap justify-content-between">
+        <div class="d-flex flex-wrap">
             <FilmVue v-for="(film) in films" :key="film.id" :film="film" />
             <SerieVue v-for="(serie) in series" :key="serie.id" :serie="serie" />
         </div>
@@ -29,10 +29,6 @@ section {
 
     h2 {
         color: white;
-    }
-
-    div {
-        gap: 20px 0;
     }
 }
 </style>

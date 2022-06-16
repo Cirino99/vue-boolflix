@@ -55,6 +55,7 @@ export default {
     background-color: #000000;
     position: relative;
     border-radius: 0;
+    margin: 10px;
 
     .description {
         position: absolute;
