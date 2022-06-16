@@ -4,20 +4,20 @@
             <h2>BOOLFLIX</h2>
 
             <ul>
-                <li @click.prevent="goHome"><a href="#">Home</a></li>
+                <li @click.prevent="goHome">Home</li>
             </ul>
 
         </nav>
-        <div class="search">
-            <input type="text" v-model="userSearch" @keyup.enter="goSearch">
-            <select name="type" v-model="typeSearch">
+        <div class="input-group mb-3 search">
+            <span class="input-group-text" id="button-search" @click.prevent="goSearch">
+                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+            </span>
+            <input type="text" class="form-control" id="my-input" @keyup.enter="goSearch" v-model="userSearch">
+            <select class="form-select " id="my-select" aria-label="Default select example" v-model="typeSearch">
                 <option value="">All</option>
                 <option value="film">Film</option>
                 <option value="serie">Serie</option>
             </select>
-            <button @click.prevent="goSearch">
-                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-            </button>
         </div>
     </header>
 </template>
@@ -39,6 +39,7 @@ export default {
         },
         goHome() {
             this.home = true;
+            this.userSearch = '';
             this.sendInputUser();
         },
         sendInputUser() {
@@ -72,37 +73,34 @@ header {
 
             li {
                 list-style-type: none;
+                color: white;
 
-                a {
-                    color: white;
-                    text-decoration: none;
+                &:hover {
+                    cursor: pointer;
                 }
-
             }
         }
     }
 
     .search {
-        input {
-            border-radius: 5px 0 0 5px;
-            height: 35px;
-            background-color: white;
+        max-width: 350px;
+        margin: 0 !important;
+
+        #button-search:hover {
+            cursor: pointer;
+        }
+
+        #my-input {
+            width: 200px;
             color: #242424;
         }
 
-        select {
-            height: 35px;
-            border-radius: 0;
-            background-color: white;
-            color: #242424;
-        }
-
-        button {
-            height: 35px;
+        #my-select {
             border-radius: 0 5px 5px 0;
             background-color: white;
             color: #242424;
-            padding: 0 5px;
+            width: 75px;
+            display: block;
         }
     }
 }

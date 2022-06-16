@@ -54,8 +54,6 @@ export default {
 .card {
     background-color: #000000;
     position: relative;
-    padding: 10px;
-    border: solid .5px white;
     border-radius: 0;
 
     .description {

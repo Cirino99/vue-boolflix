@@ -51,11 +51,11 @@ export default {
             if (userData.home === true) {
                 this.search = false;
             } else {
-                this.search = true;
-                this.listMovies = [];
-                this.listSeries = [];
                 userData.text = userData.text.trim();
                 if (userData.text !== '') {
+                    this.search = true;
+                    this.listMovies = [];
+                    this.listSeries = [];
                     if (userData.type === '') {
                         this.axiosFunction(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData.text, 'movie');
                         this.axiosFunction(this.urlApi.urlSeries + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData.text, 'serie');
@@ -128,7 +128,7 @@ export default {
     width: 100%;
     height: 100vh;
     overflow-y: scroll;
-    background-color: #434343;
+    background-color: #1a1a1a;
     position: relative;
 }
 </style>
