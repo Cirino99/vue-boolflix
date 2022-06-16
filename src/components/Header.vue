@@ -84,7 +84,8 @@ header {
 
     .search {
         max-width: 350px;
-        margin: 0 !important;
+        margin-bottom: 0 !important;
+        margin-right: 30px;
 
         #button-search:hover {
             cursor: pointer;
