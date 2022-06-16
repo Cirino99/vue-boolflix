@@ -43,7 +43,6 @@ export default {
                     categoria: 'serie'
                 });
             });
-            console.log(arr);
             return arr
         }
     }
