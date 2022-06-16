@@ -1,5 +1,5 @@
 <template>
-    <section class="d-flex flex-wrap justify-content-around">
+    <section class="d-flex flex-wrap justify-content-between">
         <FilmVue v-for="(film) in films" :key="film.id" :film="film" />
         <SerieVue v-for="(serie) in series" :key="serie.id" :serie="serie" />
     </section>
@@ -23,6 +23,6 @@ section {
     width: 100%;
     padding: 0 10px;
     margin: 90px 0;
-    gap: 20px 0
+    gap: 20px 0;
 }
 </style>

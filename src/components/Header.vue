@@ -1,7 +1,14 @@
 <template>
     <header class="d-flex align-items-center justify-content-between">
-        <h3>BOOLFLIX</h3>
-        <div>
+        <nav class="d-flex align-items-center">
+            <h3>BOOLFLIX</h3>
+
+            <ul>
+                <li>Home</li>
+            </ul>
+
+        </nav>
+        <div class="search">
             <input type="text" v-model="userSearch" @keyup.enter="sendInputUser">
             <select name="type" v-model="typeSearch">
                 <option value="">All</option>
@@ -40,16 +47,30 @@ header {
     height: 70px;
     padding: 0 20px;
     position: fixed;
-    top: 0;
+    right: 0;
     left: 0;
+    top: 0;
     z-index: 100;
-    width: 100%;
 
-    h3 {
-        color: #e50914;
+    nav {
+
+        h3 {
+            color: #e50914;
+            margin: 0;
+        }
+
+        ul {
+            display: inline-block;
+            margin: 0;
+
+            li {
+                list-style-type: none;
+                color: white;
+            }
+        }
     }
 
-    div {
+    .search {
         input {
             border-radius: 5px 0 0 5px;
             height: 35px;
@@ -69,6 +90,7 @@ header {
             border-radius: 0 5px 5px 0;
             background-color: white;
             color: #242424;
+            padding: 0 5px;
         }
     }
 }
