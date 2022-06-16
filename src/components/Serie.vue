@@ -1,5 +1,5 @@
 <template>
-    <div @mouseover="cardHover = true" @mouseleave="cardHover = false">
+    <div class="card" @mouseover="cardHover = true" @mouseleave="cardHover = false">
         <img v-if="serie.poster_path !== null" :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
         <div v-else class="copertina d-flex justify-content-center align-items-center">
             <h2>{{ serie.name }}</h2>
@@ -51,10 +51,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-div {
+.card {
     background-color: #000000;
     position: relative;
     padding: 10px;
+    border: solid .5px white;
+    border-radius: 0;
 
     .description {
         position: absolute;
@@ -63,7 +65,9 @@ div {
         width: 100%;
         height: 100%;
         color: white;
+        padding: 10px;
         padding-top: 60px;
+        background-color: #000000;
 
         .star-icon {
             color: gold;

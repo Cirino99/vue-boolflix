@@ -26,7 +26,9 @@ export default {
     },
     methods: {
         sendInputUser() {
-            this.$emit('myInput', [this.typeSearch, this.userSearch]);
+            this.userSearch = this.userSearch.trim();
+            if (this.userSearch !== '')
+                this.$emit('myInput', [this.typeSearch, this.userSearch]);
         }
     }
 }
@@ -37,6 +39,11 @@ header {
     background-color: #000000;
     height: 70px;
     padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
 
     h3 {
         color: #e50914;

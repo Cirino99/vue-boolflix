@@ -63,6 +63,12 @@ export default {
 <style lang="scss">
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -71,5 +77,6 @@ export default {
     height: 100vh;
     overflow: auto;
     background-color: #434343;
+    position: relative;
 }
 </style>
