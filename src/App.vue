@@ -48,17 +48,25 @@ export default {
     },
     methods: {
         searchData(userData) {
-            this.search = true;
-            this.listMovies = [];
-            this.listSeries = [];
-            if (userData[0] === '') {
-                this.axiosFunction(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData[1], 'movie');
-                this.axiosFunction(this.urlApi.urlSeries + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData[1], 'serie');
-            } else if (userData[0] === 'film') {
-                this.axiosFunction(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData[1], 'movie');
+            if (userData.home === true) {
+                this.search = false;
             } else {
-                this.axiosFunction(this.urlApi.urlSeries + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData[1], 'serie');
+                this.search = true;
+                this.listMovies = [];
+                this.listSeries = [];
+                userData.text = userData.text.trim();
+                if (userData.text !== '') {
+                    if (userData.type === '') {
+                        this.axiosFunction(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData.text, 'movie');
+                        this.axiosFunction(this.urlApi.urlSeries + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData.text, 'serie');
+                    } else if (userData.type === 'film') {
+                        this.axiosFunction(this.urlApi.urlMovie + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData.text, 'movie');
+                    } else {
+                        this.axiosFunction(this.urlApi.urlSeries + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + userData.text, 'serie');
+                    }
+                }
             }
+
         },
         axiosFunction(url, type) {
             axios.get(url).then((result) => {

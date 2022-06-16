@@ -1,21 +1,21 @@
 <template>
     <header class="d-flex align-items-center justify-content-between">
         <nav class="d-flex align-items-center">
-            <h3>BOOLFLIX</h3>
+            <h2>BOOLFLIX</h2>
 
             <ul>
-                <li>Home</li>
+                <li @click.prevent="goHome"><a href="#">Home</a></li>
             </ul>
 
         </nav>
         <div class="search">
-            <input type="text" v-model="userSearch" @keyup.enter="sendInputUser">
+            <input type="text" v-model="userSearch" @keyup.enter="goSearch">
             <select name="type" v-model="typeSearch">
                 <option value="">All</option>
                 <option value="film">Film</option>
                 <option value="serie">Serie</option>
             </select>
-            <button @click.prevent="sendInputUser">
+            <button @click.prevent="goSearch">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
             </button>
         </div>
@@ -28,14 +28,21 @@ export default {
     data() {
         return {
             userSearch: '',
-            typeSearch: ''
+            typeSearch: '',
+            home: false
         }
     },
     methods: {
+        goSearch() {
+            this.home = false;
+            this.sendInputUser();
+        },
+        goHome() {
+            this.home = true;
+            this.sendInputUser();
+        },
         sendInputUser() {
-            this.userSearch = this.userSearch.trim();
-            if (this.userSearch !== '')
-                this.$emit('myInput', [this.typeSearch, this.userSearch]);
+            this.$emit('myInput', { type: this.typeSearch, text: this.userSearch, home: this.home });
         }
     }
 }
@@ -54,7 +61,7 @@ header {
 
     nav {
 
-        h3 {
+        h2 {
             color: #e50914;
             margin: 0;
         }
@@ -65,7 +72,12 @@ header {
 
             li {
                 list-style-type: none;
-                color: white;
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                }
+
             }
         }
     }
