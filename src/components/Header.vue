@@ -8,7 +8,9 @@
                 <option value="film">Film</option>
                 <option value="serie">Serie</option>
             </select>
-            <button @click.prevent="sendInputUser">Search</button>
+            <button @click.prevent="sendInputUser">
+                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+            </button>
         </div>
     </header>
 </template>
@@ -24,7 +26,6 @@ export default {
     },
     methods: {
         sendInputUser() {
-            console.log(this.typeSearch);
             this.$emit('myInput', [this.typeSearch, this.userSearch]);
         }
     }
@@ -39,6 +40,29 @@ header {
 
     h3 {
         color: #e50914;
+    }
+
+    div {
+        input {
+            border-radius: 5px 0 0 5px;
+            height: 35px;
+            background-color: white;
+            color: #242424;
+        }
+
+        select {
+            height: 35px;
+            border-radius: 0;
+            background-color: white;
+            color: #242424;
+        }
+
+        button {
+            height: 35px;
+            border-radius: 0 5px 5px 0;
+            background-color: white;
+            color: #242424;
+        }
     }
 }
 </style>
