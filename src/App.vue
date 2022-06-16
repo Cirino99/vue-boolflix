@@ -32,8 +32,16 @@ export default {
     },
     methods: {
         searchData(userData) {
-            this.axiosFunction(this.urlApi.urlMovie, userData, 'movie');
-            this.axiosFunction(this.urlApi.urlSeries, userData, 'serie');
+            this.listMovies = [];
+            this.listSeries = [];
+            if (userData[0] === '') {
+                this.axiosFunction(this.urlApi.urlMovie, userData[1], 'movie');
+                this.axiosFunction(this.urlApi.urlSeries, userData[1], 'serie');
+            } else if (userData[0] === 'film') {
+                this.axiosFunction(this.urlApi.urlMovie, userData[1], 'movie');
+            } else {
+                this.axiosFunction(this.urlApi.urlSeries, userData[1], 'serie');
+            }
         },
         axiosFunction(url, query, type) {
             console.log(url + 'api_key=' + this.urlApi.key + '&language=' + this.urlApi.language + '&query=' + query);

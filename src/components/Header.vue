@@ -3,6 +3,11 @@
         <h3>BOOLFLIX</h3>
         <div>
             <input type="text" v-model="userSearch" @keyup.enter="sendInputUser">
+            <select name="type" v-model="typeSearch">
+                <option value="">All</option>
+                <option value="film">Film</option>
+                <option value="serie">Serie</option>
+            </select>
             <button @click.prevent="sendInputUser">Search</button>
         </div>
     </header>
@@ -13,12 +18,14 @@ export default {
     name: 'HeaderVue',
     data() {
         return {
-            userSearch: ''
+            userSearch: '',
+            typeSearch: ''
         }
     },
     methods: {
         sendInputUser() {
-            this.$emit('myInput', this.userSearch);
+            console.log(this.typeSearch);
+            this.$emit('myInput', [this.typeSearch, this.userSearch]);
         }
     }
 }

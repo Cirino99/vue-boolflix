@@ -20,8 +20,8 @@ export default {
 
 <style scoped lang="scss">
 section {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 20px;
+    width: 100%;
+    padding: 0 10px;
+    margin: 20px 0;
 }
 </style>
