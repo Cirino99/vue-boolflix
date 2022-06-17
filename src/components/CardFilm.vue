@@ -1,6 +1,6 @@
 <template>
     <div class="card" @mouseover="cardHover = true" @mouseleave="cardHover = false">
-        <img v-if="item.poster !== null" :src="'https://image.tmdb.org/t/p/w342' + item.poster" alt="">
+        <img v-if="item.poster !== null" :src="'https://image.tmdb.org/t/p/w342' + item.poster" :alt="item.nome">
         <div v-else class="copertina d-flex justify-content-center align-items-center">
             <h2>{{ item.nome }}</h2>
         </div>
